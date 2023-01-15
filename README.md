@@ -1,22 +1,33 @@
 # serverPortfolio
 
-ini adalah bagian backend dari portfolio jika anda ingin menjalankan website ini clone juga repository portfolio
-
-lalu lakukan
+## cara menjalakan
 
 
-untuk bagian backend
+### instal repository frontEnd
 
-npm i
+1.sebelum menjalankan folder ini clone juga repository yang bernama Portfolio
 
-nodemon 
+### jalankan folder ServerPortfolio
 
 
-untuk bagian frontend
+#### buka teminal
 
-npm i
+1. npm i
 
-dan lakukan
+2. nodemon
 
-npm start
+3.lalu jalankan juga bagian Portfolio nya
+
+
+### jalankan folder portfolio
+
+#### buka teminal
+
+1. npm i
+
+2. npm start
+
+3.lalu jalankan juga bagian serverPortfolio nya
+
+
 
