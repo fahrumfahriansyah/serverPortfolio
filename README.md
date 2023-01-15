@@ -29,5 +29,7 @@
 
 3.lalu jalankan juga bagian serverPortfolio nya
 
-
+## jika terjadi error 
+### coba buat sendiri mongodb anda dan conneckan di  
+./index.js file utama
 
