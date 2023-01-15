@@ -14,6 +14,8 @@ nodemon
 
 untuk bagian frontend
 
+npm i
+
 dan lakukan
 
 npm start
