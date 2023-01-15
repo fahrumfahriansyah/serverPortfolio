@@ -1,0 +1,101 @@
+[route.api]/[version]/[grouping]/{endpoint}
+sample:
+domain/v1/auth
+
+
+
+standar status response 
+
+200 - OK                    ---> call api success
+201 - created               ---> post success
+400 - bad request           ---> error on client side (bisa input yang salah dll)
+401 - unauthorized          ---> user not authorized to the request
+403 - forbidden             ---> user not allowed to access
+404 - not found             ---> request endpoint not found
+500 - internal server error ---> error on server side
+502 0 bad gateway           ---> invalid response from author request
+
+GROUP:Authentication
+
+[1] register
+[route.api]/[version]/auth/register
+
+req:
+{
+    "email":"asd@gmail.com",
+    "password":"asdasds"
+"fullname":"fasadasdsadas"
+"lastname":"fahri"
+}
+res:
+{
+    "message":"register success"
+    "data":{
+        "id":"1"
+         "email":"asd@gmail.com",
+         "password":"asdasds"
+         "nama":{
+            "fullname":"fasadasdsadas"
+            "lastname":"fahri"
+         },
+    }
+}
+--err-res:
+201 --> post success
+400 --> input yang anda masukan tidak valid
+
+[2]Login
+
+req:
+{
+"email":"asd@gmail.com",
+"password":"asdasds"
+"fullname":"fasadasdsadas"
+"lastname":"fahri"
+"made":"fahri"
+}
+res:
+{
+    "message":"register success"
+    "data":{
+        "id":"1"
+         "email":"asd@gmail.com",
+         "password":"asdasds",
+         "made":"12 januari 19:04"
+         "nama":{
+            "fullname":"fasadasdsadas"
+            "lastname":"fahri"
+         },
+    }
+}
+--err-res:
+201 --> post success
+400 --> input yang anda masukan tidak valid
+
+
+sample:
+domain/v1/Project
+GROUP:Admin To BlogProject
+
+req:
+{
+"image":"asd@gmail.com",
+"judul":"asdasds"
+"Body":"fasadasdsadas"
+"link":"www/asdsadadas"
+}
+
+{
+    "message":"Blog success"
+    "data":{
+        "id":"1"
+         "image":"asd@gmail.com",
+         "Project":{
+            "judul":"fahri"
+            "body":"fahri"
+            "link":"wwww/fahri"
+         },
+    }
+}
+201 --> post success
+400 --> input yang anda masukan tidak valid

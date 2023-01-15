@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "server_porfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "m.fahriansyah",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "express-ip": "^1.0.4",
+    "express-useragent": "^1.0.15",
+    "express-validator": "^6.14.2",
+    "geolocation": "^0.2.0",
+    "ip": "^2.0.0",
+    "mongoose": "^6.8.3"
+  },
+  "devDependencies": {}
+}
