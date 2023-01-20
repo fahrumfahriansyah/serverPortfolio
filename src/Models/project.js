@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema({
 
-    // image: {
-    //     type: "string",
-    //     required: true
-    // },
+    image: {
+        type: "string",
+        required: true
+    },
     project: {
         type: Object,
         required: true

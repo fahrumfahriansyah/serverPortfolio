@@ -1,7 +1,11 @@
 const express = require('express')
 const route = express.Router()
-const Project = require("../Controllers/project")
+const { body } = require('express-validator')
+const Project = require("../Controllers/controlProject")
 
-route.post("/CreateProject", Project.ProjectCreate)
+route.post("/CreateProject", [body("judul").isUppercase().withMessage("judul harus huruf besar"), body("body").isLength({ min: 20, max: 120 }).withMessage("huruf minimal 20 maximal 120"), body("link").isURL().withMessage("ini bukan link")], Project.ProjectCreate)
+
+route.get("/getAllProject", Project.getAllProject)
+route.delete("/:byId", Project.deleteProjectByid)
 
 module.exports = route
