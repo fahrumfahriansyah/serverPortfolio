@@ -5,17 +5,34 @@ const Project = require("../Models/project");
 const project = require('../Models/project');
 exports.ProjectCreate = (req, res, next) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
         const err = new Error("input value tidak sesuai")
         err.errorStatus = 400
-        err.data = errors.array()
+        if (!req.file) {
+            let dat = errors.array()
+            dat.push({ msg: "image tidak ada" })
+            const data = { notValid: dat }
+            err.data = data
+        } else {
+            const data = { notValid: errors.array() }
+            err.data = data
+            throw err
+        }
         throw err
     }
-    if (!req.file) {
-        const err = new Error("image tidak ada")
-        err.errorStatus = 402
-        throw err
+    if (errors.isEmpty()) {
+        if (!req.file) {
+            const err = new Error("input value tidak sesuai")
+            err.errorStatus = 400
+            let dat = errors.array()
+            dat.push({ msg: "image tidak ada" })
+            const data = { notValid: dat }
+            err.data = data
+            throw err
+        }
     }
+
     const image = req.file.path
     const judul = req.body.judul
     const body = req.body.body
