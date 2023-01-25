@@ -6,6 +6,7 @@ const path = require("path")
 const bodyParser = require('body-parser')
 const Auth = require("./src/Routes/authentication")
 const Project = require("./src/Routes/project")
+const Technology = require("./src/Routes/Technology")
 useragent = require('express-useragent');
 //! multer
 const fileStorage = multer.diskStorage({
@@ -55,6 +56,7 @@ app.use(bodyParser.json())
 //! tutup setup body parser
 
 app.use("/v1/Auth", Auth)
+app.use("/v1/Technology", Technology)
 app.use("/v1/Project", Project)
 //! set up mongoose
 mongoose.set('strictQuery', true);

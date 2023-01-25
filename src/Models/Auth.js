@@ -26,7 +26,8 @@ const Schema = mongoose.Schema({
             type: Object,
             required: false,
         }
-    },
+    }
+
 
 }, {
     timestamps: true

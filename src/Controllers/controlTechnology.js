@@ -1,11 +1,10 @@
 const { validationResult } = require('express-validator');
 const { Error } = require('mongoose');
-const Project = require("../Models/project");
+const Technology = require("../Models/Technology")
 const path = require("path")
 const fs = require("fs")
-exports.ProjectCreate = (req, res, next) => {
+exports.createTech = (req, res, next) => {
     const errors = validationResult(req);
-
     if (!errors.isEmpty()) {
         const err = new Error("input value tidak sesuai")
         err.errorStatus = 400
@@ -23,6 +22,7 @@ exports.ProjectCreate = (req, res, next) => {
         }
         throw err
     }
+
     if (errors.isEmpty()) {
         if (!req.file) {
             const err = new Error("input value tidak sesuai")
@@ -34,64 +34,46 @@ exports.ProjectCreate = (req, res, next) => {
             throw err
         }
     }
-
     const image = req.file.path
     const judul = req.body.judul
-    const body = req.body.body
     const link = req.body.link
+    const bgc = req.body.bgc
 
-    const Posting = new Project({
+    const Posting = new Technology({
         image,
-        project: {
+        Technology: {
             judul,
-            body,
             link,
+            bgc
         }
     })
-
     Posting.save().then(response => {
         res.status(200).json({
             message: "Create success",
-            Project: response
-
+            Technology: response
         })
     }).catch(err => {
+        removeImage()
         console.log(err)
     })
 
 }
 
-exports.getAllProject = (req, res, next) => {
-
-    const currentPage = req.query.page || 1
-    const toPage = req.query.toPage || 3
-    let totalAllData;
-    Project.find().countDocuments()
-        .then((result) => {
-            totalAllData = result
-            return Project.find().skip((parseInt(currentPage) - 1) * parseInt(toPage))
-                .limit(toPage)
-        }).then((result) => {
-            let pageNum = Math.floor(totalAllData / 3) + 1
+exports.getAllTech = (req, res, next) => {
+    Technology.find()
+        .then(response => {
             res.status(200).json({
-                message: "get all data project",
-                data: result,
-                totalProject: totalAllData,
-                pageNum,
-                toPage: toPage,
-                page: currentPage
+                message: "get All succes",
+                Technology: response
             })
-        }).catch((err) => {
-            next(err)
+        }).catch(err => {
+            console.log(err)
         })
-
 }
 
-
-exports.deleteProjectByid = (req, res, next) => {
+exports.deleteTech = (req, res, next) => {
     const params = req.params.byId.toString().trim()
-
-    Project.findByIdAndDelete(params).then(response => {
+    Technology.findByIdAndDelete(params).then(response => {
         removeImage(response.image)
         res.json({
             message: "success full"
@@ -102,6 +84,7 @@ exports.deleteProjectByid = (req, res, next) => {
         })
     })
 }
+
 removeImage = (filePathImg) => {
     filePathImg = path.join(__dirname, "../..", filePathImg)
     console.log(filePathImg)

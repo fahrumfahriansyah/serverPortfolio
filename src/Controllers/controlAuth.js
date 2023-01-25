@@ -63,10 +63,8 @@ exports.AuthLogin = (req, res, next) => {
     const today = new Date()
     const update = { Admin: { loginTime: `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}-${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`, local: ip.address(), device: req.useragent } };
     Auth.findOneAndUpdate(query, update, { new: true }, function (err, doc) {
-        console.log(doc)
         if (!doc) {
 
-            console.log(doc)
             res.json({
                 message: false,
             })
