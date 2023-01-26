@@ -25,8 +25,12 @@ const Schema = mongoose.Schema({
         device: {
             type: Object,
             required: false,
+        }, Access: {
+            type: Boolean,
+            required: false,
         }
-    }
+    },
+
 
 
 }, {
